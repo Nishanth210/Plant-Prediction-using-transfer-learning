@@ -1,0 +1,164 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="style.css"  rel="stylesheet">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-image: linear-gradient(50deg,skyblue,rgb(89, 148, 196));
+            background-repeat: no-repeat;
+            background-position: center;
+           background-size: cover;
+           
+        }
+
+        .navbar{
+            background-color: rgb(212, 208, 208);
+            z-index: 30;
+            padding: 20px;
+            display: flex;
+            justify-content: flex-end;
+            position: sticky;
+            
+        }
+
+        .navbar a{
+            padding-left: 15px;
+            text-decoration: none;
+            color: black;
+            cursor: pointer;
+            
+        }
+
+        .navbar a:hover{
+            color: rgb(73, 67, 67);
+        }
+        .login{
+            margin-top: 80px;
+            
+        }
+        h1{
+            text-align: center;
+            margin-top: 10px;
+            color: aliceblue;
+        }
+        label{
+           color: black;
+        }
+        .output{
+            color:white;
+            text-align:center;
+            margin-top: 50px;
+        }
+       
+        .image{
+            float: left;
+            padding-top: 50px;
+            padding-left: 30px;
+        }
+
+        .form{
+            padding-top: 50px;
+            float: right;
+            margin-right:15px;
+            text-align: center;
+        }
+        input{
+            cursor: pointer;
+        }
+
+        button{
+            background-color: rgb(51, 51, 146);
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            margin-right: 50px;
+        }
+
+        button:hover{
+            background-color: blue;
+        }
+
+        .footer {
+            margin-top:250px;
+            background-color:rgb(212, 208, 208);
+            
+        }
+
+        .footer h6{
+            
+            margin-top:10px;
+        }
+
+    </style>        
+</head>
+<body>
+    <div class="navbar">
+        <a href="/about">About</a>
+        
+        <a href="/">Detect Disease</a>
+    </div>
+<div class="login">
+    <b><h1>PLANT DISEASE DETECTION</h1></b>
+    <div class="image">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXh3lbiXwC3GAyo65RkI6fDYYb3R_2azTI7A&usqp=CAU">
+    </div>
+    <div class="form">
+        <p>
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <ul>
+                {% for message in messages %}
+                  <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+        </p>
+        {% if filename %}
+            <div>
+                <img src="{{ url_for('display_image', filename=filename) }}">
+            </div>
+        {% endif %}
+    <form action="/", method="POST" enctype="multipart/form-data">
+        <br>
+        <label for="income" >Choose Image:</label>
+        <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg" required/>
+        <br><br>
+        <button value="Submit">Predict</button>
+    </form>
+    </div>
+    <br>
+    <br>
+<div class="output">
+    {{prediction_text}}
+</div>
+</div>
+<div class="container">
+<div class="footer">
+    <p>
+        Agriculture is extremely important in human life. Almost 60% of the population is engaged in some kind
+of agriculture, either directly or indirectly. There are no technologies in the traditional system to detect
+diseases in various crops in an agricultural environment, which is why farmers are not interested in
+increasing their agricultural productivity day by day. Crop diseases have an impact on the growth of their
+respective species, so early detection is critical. Many Machine Learning (ML) models have been used to
+detect and classify crop diseases, but with recent advances in a subset of ML, Deep Learning (DL), this
+area of research appears to have a lot of promise in terms of improved accuracy. The proposed method
+uses a convolutional neural network and a Deep Neural Network to identify and recognise crop disease
+symptoms effectively and accurately. Furthermore, multiple efficiency metrics are used to assess these
+strategies. This article offers a thorough description of the DL models that are used to visualise crop
+diseases. Furthermore, several research gaps are identified from which greater transparency for
+detecting diseases in plants can be obtained, even before symptoms occur. The proposed methodology
+aims to develop a convolution neural network-based strategy for detecting plant leaf disease
+    </p>
+    <h6>TO KNOW MORE VISIT <a href="/about">about page</a></h6>
+</div>
+</body>
+</html>
